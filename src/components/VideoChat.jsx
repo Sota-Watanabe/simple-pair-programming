@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import Peer from "skyway-js";
 import Editor from "./Editor";
+import ChangeMode from "./ChangeMode";
 
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY });
 const VideoChat = () => {
@@ -97,7 +98,7 @@ const VideoChat = () => {
           ></video>
         </div>
       </div>
-
+      <ChangeMode />
       <Editor text={editText} dataConnection={dataConnection} />
     </div>
   );
