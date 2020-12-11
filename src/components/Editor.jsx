@@ -36,6 +36,7 @@ const Editor = React.memo(
           height="500px"
           highlightActiveLine={false}
           mode="c_cpp"
+          style={{margin: "auto", maxWidth: "1024px"}}
           name="UNIQUE_ID_OF_DIV"
           onChange={onChange}
           onLoad={onLoad}

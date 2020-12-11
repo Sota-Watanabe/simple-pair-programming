@@ -72,35 +72,35 @@ const VideoChat = () => {
   });
 
   return (
-    <>
-      <div style={{ display: "flex", height: "300px" }}>
-        {console.log("start return ")}
-        {console.log("dataConnection:", dataConnection)}
-        <div>
+    <div>
+      <div style={{ display: "flex", justifyContent: "space-around", maxWidth: "1000px", margin: "auto"}}>
+        <div style={{width: "40%"}}>
           <video
-            width="300px"
+            width="100%"
             autoPlay
             muted
             playsInline
+            style={{maxWidth: "400px"}}
             ref={localVideo}
           ></video>
           <div>{myId}</div>
           <input onChange={(e) => setCallId(e.target.value)}></input>
           <button onClick={makeConnection}>発信</button>
         </div>
-        <div>
+        <div style={{width: "40%", textAlign: "center"}}>
           <video
-            width="300px"
+            width="100%"
             autoPlay
             muted
             playsInline
+            style={{maxWidth: "400px"}}
             ref={remoteVideo}
           ></video>
         </div>
       </div>
       {/* <button onClick={send}>メッセージ送信</button> */}
       <Editor text={editText} dataConnection={dataConnection} />
-    </>
+    </div>
   );
 };
 
