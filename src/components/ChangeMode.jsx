@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Switch from "react-ios-switch";
 
+import { ConnectionContext } from "./App";
+
 const App = () => {
-  const [canWrite, setCanWrite] = useState(false);
+  const [value, setValue] = useContext(ConnectionContext);
+  const updateHandler = (checked) => {
+    setValue({
+      ...value,
+      canWrite: checked,
+    });
+  };
+
   return (
     <div
       style={{
@@ -11,13 +20,13 @@ const App = () => {
         alignItems: "center",
       }}
     >
-      {canWrite && <h3 style={{ marginY: "auto" }}>書き込みモード</h3>}
-      {!canWrite && <h3 style={{ marginY: "auto" }}>読み込みモード</h3>}
+      {value.canWrite && <h3 style={{ marginY: "auto" }}>書き込みモード</h3>}
+      {!value.canWrite && <h3 style={{ marginY: "auto" }}>読み込みモード</h3>}
 
       <Switch
         style={{ marginLeft: "10px" }}
-        checked={canWrite}
-        onChange={(checked) => setCanWrite(checked)}
+        checked={value.canWrite}
+        onChange={(checked) => updateHandler(checked)}
       />
     </div>
   );
