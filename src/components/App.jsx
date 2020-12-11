@@ -1,12 +1,11 @@
 import React from "react";
-import VideoChat from "./VideoChat";
+import Connection from "./Connection";
 
 const App = () => {
-  console.log("start App");
   return (
-    <div>
-      <VideoChat />
-    </div>
+    <>
+      <Connection />
+    </>
   );
 };
 
