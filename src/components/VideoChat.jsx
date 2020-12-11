@@ -4,7 +4,6 @@ import Editor from "./Editor";
 
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY });
 const VideoChat = () => {
-  console.log("start VideoChatーーーーーーーーー");
   const [myId, setMyId] = useState("");
   const [callId, setCallId] = useState("");
   const [dataConnection, setDataConnection] = useState("");
@@ -29,32 +28,25 @@ const VideoChat = () => {
 
   /* 接続要求を送信 */
   const makeConnection = () => {
-    console.log("make Call");
     const mediaConnection = peer.call(callId, localVideo.current.srcObject);
     mediaConnection.on("stream", async (stream) => {
       remoteVideo.current.srcObject = stream;
       await remoteVideo.current.play().catch(console.error);
     });
-    console.log("makeConnect");
     const dataConnection = peer.connect(callId);
     setDataConnection(dataConnection); //Connいる?
 
     dataConnection.on("data", (data) => {
-      console.log(data);
       setEditText(data);
     });
   };
 
   /* 接続要求を受信時 */
   peer.on("connection", (receiveDataConnection) => {
-    console.log("peer.on conection");
     /* 初期接続時 */
-    console.log("setConn");
     setDataConnection(receiveDataConnection);
-
     /* メッセージ受信 */
     receiveDataConnection.on("data", (data) => {
-      console.log(data);
       setEditText(data);
     });
   });
@@ -98,7 +90,6 @@ const VideoChat = () => {
           ></video>
         </div>
       </div>
-      {/* <button onClick={send}>メッセージ送信</button> */}
       <Editor text={editText} dataConnection={dataConnection} />
     </div>
   );
