@@ -12,6 +12,7 @@ export const Connection = () => {
   const [callId, setCallId] = useState("");
   const [dataConnection, setDataConnection] = useState("");
   const [editText, setEditText] = useState("");
+  const [ready, setReady] = useState(false);
   const localVideo = useRef(null);
   const remoteVideo = useRef(null);
 
@@ -47,6 +48,7 @@ export const Connection = () => {
       remoteVideo.current.srcObject = stream;
       await remoteVideo.current.play().catch(console.error);
     });
+    setReady(true)
     const dataConnection = peer.connect(callId);
     setDataConnection(dataConnection); //Connいる?
 
@@ -63,6 +65,7 @@ export const Connection = () => {
     receiveDataConnection.on("data", (data) => {
       receiveData(data);
     });
+    setReady(true)
   });
 
   /* ビデオ電話要求を受信 */
@@ -76,19 +79,23 @@ export const Connection = () => {
       });
     }
   });
-
+  console.log('ready=', ready);
   return (
     <div>
       <div>{myId}</div>
       <input onChange={(e) => setCallId(e.target.value)}></input>
       <button onClick={makeConnection}>発信</button>
       <VideoChat localVideo={localVideo} remoteVideo={remoteVideo} />
-      <ChangeMode dataConnection={dataConnection} />
-      <Editor
-        text={editText}
-        setText={setEditText}
-        dataConnection={dataConnection}
-      />
+      {ready && (
+        <>
+          <ChangeMode dataConnection={dataConnection} />
+          <Editor
+            text={editText}
+            setText={setEditText}
+            dataConnection={dataConnection}
+          />
+        </>
+      )}
     </div>
   );
 };
