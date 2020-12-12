@@ -19,7 +19,6 @@ export const Connection = () => {
   // 最初だけ
   peer.on("open", () => {
     setMyId(peer.id);
-    // useEffectを使うべきかもしれない
     if (localVideo.current !== null) {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
@@ -48,7 +47,7 @@ export const Connection = () => {
     });
     setReady(true);
     const dataConnection = peer.connect(callId);
-    setDataConnection(dataConnection); //Connいる?
+    setDataConnection(dataConnection);
 
     dataConnection.on("data", (data) => {
       receiveData(data);
