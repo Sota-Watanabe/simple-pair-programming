@@ -9,7 +9,6 @@ let editorInstance = null;
 export const Editor = React.memo(
   (props) => {
     const [value, setValue] = useContext(ConnectionContext);
-    console.log("start Editor");
     const text = props.text;
     const onChange = () => {
       if (value.canWrite === true) {
@@ -47,6 +46,4 @@ export const Editor = React.memo(
       </div>
     );
   }
-  // Props.editTextが変更されない限り, 再レンダリングしない
-  // (prevProps, nextProps) => prevProps.text === nextProps.text,
 );
