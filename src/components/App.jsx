@@ -1,13 +1,7 @@
 import React, { createContext, useState } from "react";
 import Connection from "./Connection";
 
-export const ConnectionContext = createContext([
-  {
-    canWrite: false,
-    editText: "",
-  },
-  () => {},
-]);
+export const ConnectionContext = createContext();
 
 const App = () => {
   const [value, setValue] = useState({
