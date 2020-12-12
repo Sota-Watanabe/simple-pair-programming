@@ -18,11 +18,9 @@ export const Connection = () => {
 
   // 最初だけ
   peer.on("open", () => {
-    console.log("open");
     setMyId(peer.id);
     // useEffectを使うべきかもしれない
     if (localVideo.current !== null) {
-      console.log("get localStream");
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
         .then((localStream) => {
