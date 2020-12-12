@@ -33,7 +33,7 @@ export const VideoChat = ({ localVideo, remoteVideo }) => {
           <video
             width="100%"
             autoPlay
-            muted={muted}
+            muted
             playsInline
             style={{ maxWidth: "400px" }}
             ref={localVideo}
