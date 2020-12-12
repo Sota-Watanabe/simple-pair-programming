@@ -26,6 +26,9 @@ jobs:
             ${{ runner.os }}-node-
       - run: npm ci
       - run: npm run build
+        env:
+          REACT_APP_SKYWAY_KEY: ${{ secrets.REACT_APP_SKYWAY_KEY }}
+
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
