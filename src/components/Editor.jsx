@@ -5,7 +5,7 @@ import React from "react";
 import AceEditor from "react-ace";
 
 let editorInstance = null;
-const Editor = React.memo(
+export const Editor = React.memo(
   (props) => {
     console.log("start Editor");
     const text = props.text;
@@ -36,7 +36,7 @@ const Editor = React.memo(
           height="500px"
           highlightActiveLine={false}
           mode="c_cpp"
-          style={{margin: "auto", maxWidth: "1024px"}}
+          style={{ margin: "auto", maxWidth: "1024px" }}
           name="UNIQUE_ID_OF_DIV"
           onChange={onChange}
           onLoad={onLoad}
@@ -53,5 +53,3 @@ const Editor = React.memo(
   // Props.editTextが変更されない限り, 再レンダリングしない
   // (prevProps, nextProps) => prevProps.text === nextProps.text,
 );
-
-export default Editor;

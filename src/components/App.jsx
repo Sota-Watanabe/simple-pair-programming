@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import Connection from "./Connection";
+import { Connection } from "./Connection";
 
 export const ConnectionContext = createContext();
 

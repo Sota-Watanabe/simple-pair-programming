@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import Peer from "skyway-js";
-import Editor from "./Editor";
+import { Editor } from "./Editor";
 import { ChangeMode } from "./ChangeMode";
 
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY });
-const Connection = () => {
+export const Connection = () => {
   const [myId, setMyId] = useState("");
   const [callId, setCallId] = useState("");
   const [dataConnection, setDataConnection] = useState("");
@@ -103,5 +103,3 @@ const Connection = () => {
     </div>
   );
 };
-
-export default Connection;
