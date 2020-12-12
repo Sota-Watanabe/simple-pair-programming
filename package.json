@@ -21,7 +21,7 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build && gh-pages -d build"
   },
-  "homepage": "http://sota-watanabe.github.io/simple-pair-programming",
+  "homepage": "http://simple-pair-programming.so-ta.net",
   "eslintConfig": {
     "extends": "react-app"
   },
