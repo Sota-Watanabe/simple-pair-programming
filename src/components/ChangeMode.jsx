@@ -6,9 +6,7 @@ import { ConnectionContext } from "./App";
 export const ChangeMode = ({ dataConnection }) => {
   const [value, setValue] = useContext(ConnectionContext);
   const updateHandler = (canWrite) => {
-    if (canWrite === true) {
-      dataConnection.send({canWrite: canWrite})
-    }
+    dataConnection.send({canWrite: canWrite})
     setValue({
       ...value,
       canWrite: canWrite,

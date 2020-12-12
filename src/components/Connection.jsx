@@ -33,13 +33,11 @@ export const Connection = () => {
     if (data.hasOwnProperty("editText")) {
       setEditText(data.editText);
     }
-    // 相手が書き込みモードの場合、自分は読み込みモードに変更する
-    if (data.canWrite === true) {
-      setValue({
-        ...value,
-        canWrite: false,
-      });
-    }
+    // 相手が書き込みモードの場合、自分は読み込みモードに変更する。逆も同様
+    setValue({
+      ...value,
+      canWrite: !data.canWrite,
+    });
   };
 
   /* 接続要求を送信 */
@@ -86,7 +84,11 @@ export const Connection = () => {
       <button onClick={makeConnection}>発信</button>
       <VideoChat localVideo={localVideo} remoteVideo={remoteVideo} />
       <ChangeMode dataConnection={dataConnection} />
-      <Editor text={editText} dataConnection={dataConnection} />
+      <Editor
+        text={editText}
+        setText={setEditText}
+        dataConnection={dataConnection}
+      />
     </div>
   );
 };

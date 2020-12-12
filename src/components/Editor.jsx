@@ -1,3 +1,4 @@
+import { edit } from "ace-builds";
 import "ace-builds/src-noconflict/ace";
 import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/theme-chaos";
@@ -13,6 +14,7 @@ export const Editor = React.memo(
     const onChange = () => {
       if (value.canWrite === true) {
         const editText = editorInstance.getValue();
+        props.setText(editText)
         const { dataConnection } = props;
         const data = { canWrite: value.canWrite, editText };
         dataConnection.send(data);
