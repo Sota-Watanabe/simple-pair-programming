@@ -6,7 +6,6 @@ export const ConnectionContext = createContext();
 const App = () => {
   const [value, setValue] = useState({
     canWrite: false,
-    editText: "",
   });
 
   return (
