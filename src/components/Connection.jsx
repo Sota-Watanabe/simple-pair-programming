@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Peer from "skyway-js";
 import { Editor } from "./Editor";
 import { ChangeMode } from "./ChangeMode";
+import { VideoChat } from "./VideoChat";
 
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY });
 export const Connection = () => {
@@ -66,38 +67,10 @@ export const Connection = () => {
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          maxWidth: "1000px",
-          margin: "auto",
-        }}
-      >
-        <div style={{ width: "40%" }}>
-          <video
-            width="100%"
-            autoPlay
-            muted
-            playsInline
-            style={{ maxWidth: "400px" }}
-            ref={localVideo}
-          ></video>
-          <div>{myId}</div>
-          <input onChange={(e) => setCallId(e.target.value)}></input>
-          <button onClick={makeConnection}>発信</button>
-        </div>
-        <div style={{ width: "40%", textAlign: "center" }}>
-          <video
-            width="100%"
-            autoPlay
-            muted
-            playsInline
-            style={{ maxWidth: "400px" }}
-            ref={remoteVideo}
-          ></video>
-        </div>
-      </div>
+      <div>{myId}</div>
+      <input onChange={(e) => setCallId(e.target.value)}></input>
+      <button onClick={makeConnection}>発信</button>
+      <VideoChat localVideo={localVideo} remoteVideo={remoteVideo}/>
       <ChangeMode />
       <Editor text={editText} dataConnection={dataConnection} />
     </div>
