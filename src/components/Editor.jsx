@@ -1,4 +1,3 @@
-import { edit } from "ace-builds";
 import "ace-builds/src-noconflict/ace";
 import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/theme-chaos";
@@ -9,7 +8,7 @@ import { ConnectionContext } from "./App";
 let editorInstance = null;
 export const Editor = React.memo(
   (props) => {
-    const [value, setValue] = useContext(ConnectionContext);
+    const [value] = useContext(ConnectionContext);
     const text = props.text;
     const onChange = () => {
       if (value.canWrite === true) {
