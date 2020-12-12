@@ -39,6 +39,7 @@ export const Editor = React.memo(
           showPrintMargin={false}
           tabSize={4}
           theme="chaos"
+          readOnly={!value.canWrite}
           value={text}
           width="80%"
           wrapEnabed={false}
