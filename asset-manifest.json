@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/simple-pair-programming/static/js/main.cefb92c3.chunk.js",
-    "main.js.map": "/simple-pair-programming/static/js/main.cefb92c3.chunk.js.map",
+    "main.js": "/simple-pair-programming/static/js/main.56b710ba.chunk.js",
+    "main.js.map": "/simple-pair-programming/static/js/main.56b710ba.chunk.js.map",
     "runtime-main.js": "/simple-pair-programming/static/js/runtime-main.81df54d1.js",
     "runtime-main.js.map": "/simple-pair-programming/static/js/runtime-main.81df54d1.js.map",
     "static/js/2.fac96e78.chunk.js": "/simple-pair-programming/static/js/2.fac96e78.chunk.js",
     "static/js/2.fac96e78.chunk.js.map": "/simple-pair-programming/static/js/2.fac96e78.chunk.js.map",
     "index.html": "/simple-pair-programming/index.html",
-    "precache-manifest.6339d16ffc040ffe840befbd7e75edac.js": "/simple-pair-programming/precache-manifest.6339d16ffc040ffe840befbd7e75edac.js",
+    "precache-manifest.e14dd54b88d213ed787aa6aecd5354af.js": "/simple-pair-programming/precache-manifest.e14dd54b88d213ed787aa6aecd5354af.js",
     "service-worker.js": "/simple-pair-programming/service-worker.js",
     "static/js/2.fac96e78.chunk.js.LICENSE.txt": "/simple-pair-programming/static/js/2.fac96e78.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.81df54d1.js",
     "static/js/2.fac96e78.chunk.js",
-    "static/js/main.cefb92c3.chunk.js"
+    "static/js/main.56b710ba.chunk.js"
   ]
 }
