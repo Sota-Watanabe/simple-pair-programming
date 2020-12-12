@@ -3,7 +3,7 @@ import Switch from "react-ios-switch";
 
 import { ConnectionContext } from "./App";
 
-const App = () => {
+export const ChangeMode = () => {
   const [value, setValue] = useContext(ConnectionContext);
   const updateHandler = (checked) => {
     setValue({
@@ -32,4 +32,3 @@ const App = () => {
   );
 };
 
-export default App;
