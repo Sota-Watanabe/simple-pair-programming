@@ -30,13 +30,15 @@ export const Connection = () => {
     }
   });
   const receiveData = (data) => {
-    setValue({
-      ...value,
-      canWrite: data.canWrite,
-    });
-    // canWriteがfalseの場合、相手が送信しない仕様になっているが念の為
-    if (data.canWrite === true) {
+    if (data.hasOwnProperty("editText")) {
       setEditText(data.editText);
+    }
+    // 相手が書き込みモードの場合、自分は読み込みモードに変更する
+    if (data.canWrite === true) {
+      setValue({
+        ...value,
+        canWrite: false,
+      });
     }
   };
 
@@ -83,7 +85,7 @@ export const Connection = () => {
       <input onChange={(e) => setCallId(e.target.value)}></input>
       <button onClick={makeConnection}>発信</button>
       <VideoChat localVideo={localVideo} remoteVideo={remoteVideo} />
-      <ChangeMode />
+      <ChangeMode dataConnection={dataConnection} />
       <Editor text={editText} dataConnection={dataConnection} />
     </div>
   );

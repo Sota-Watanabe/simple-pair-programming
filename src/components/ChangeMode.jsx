@@ -3,12 +3,15 @@ import Switch from "react-ios-switch";
 
 import { ConnectionContext } from "./App";
 
-export const ChangeMode = () => {
+export const ChangeMode = ({ dataConnection }) => {
   const [value, setValue] = useContext(ConnectionContext);
-  const updateHandler = (checked) => {
+  const updateHandler = (canWrite) => {
+    if (canWrite === true) {
+      dataConnection.send({canWrite: canWrite})
+    }
     setValue({
       ...value,
-      canWrite: checked,
+      canWrite: canWrite,
     });
   };
 
@@ -31,4 +34,3 @@ export const ChangeMode = () => {
     </div>
   );
 };
-
