@@ -1,11 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import Peer from "skyway-js";
 import { Editor } from "./Editor";
 import { ChangeMode } from "./ChangeMode";
 import { VideoChat } from "./VideoChat";
+import { ConnectionContext } from "./App";
 
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY });
 export const Connection = () => {
+  const [value, setValue] = useContext(ConnectionContext);
   const [myId, setMyId] = useState("");
   const [callId, setCallId] = useState("");
   const [dataConnection, setDataConnection] = useState("");
@@ -27,6 +29,16 @@ export const Connection = () => {
         });
     }
   });
+  const receiveData = (data) => {
+    setValue({
+      ...value,
+      canWrite: data.canWrite,
+    });
+    // canWriteがfalseの場合、相手が送信しない仕様になっているが念の為
+    if (data.canWrite === true) {
+      setEditText(data.editText);
+    }
+  };
 
   /* 接続要求を送信 */
   const makeConnection = () => {
@@ -39,7 +51,7 @@ export const Connection = () => {
     setDataConnection(dataConnection); //Connいる?
 
     dataConnection.on("data", (data) => {
-      setEditText(data);
+      receiveData(data);
     });
   };
 
@@ -49,7 +61,7 @@ export const Connection = () => {
     setDataConnection(receiveDataConnection);
     /* メッセージ受信 */
     receiveDataConnection.on("data", (data) => {
-      setEditText(data);
+      receiveData(data);
     });
   });
 
@@ -70,7 +82,7 @@ export const Connection = () => {
       <div>{myId}</div>
       <input onChange={(e) => setCallId(e.target.value)}></input>
       <button onClick={makeConnection}>発信</button>
-      <VideoChat localVideo={localVideo} remoteVideo={remoteVideo}/>
+      <VideoChat localVideo={localVideo} remoteVideo={remoteVideo} />
       <ChangeMode />
       <Editor text={editText} dataConnection={dataConnection} />
     </div>

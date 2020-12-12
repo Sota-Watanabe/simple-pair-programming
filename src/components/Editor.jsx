@@ -1,25 +1,22 @@
 import "ace-builds/src-noconflict/ace";
 import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/theme-chaos";
-import React from "react";
+import React, { useContext } from "react";
 import AceEditor from "react-ace";
 
+import { ConnectionContext } from "./App";
 let editorInstance = null;
 export const Editor = React.memo(
   (props) => {
+    const [value, setValue] = useContext(ConnectionContext);
     console.log("start Editor");
     const text = props.text;
     const onChange = () => {
-      const editText = editorInstance.getValue();
-
-      if (editText !== props.text) {
-        /* 親コンポーネントのeditTextを更新 */
+      if (value.canWrite === true) {
+        const editText = editorInstance.getValue();
         const { dataConnection } = props;
-        console.log(dataConnection);
-        dataConnection.send(editText);
-        console.log("not skipppppppppp");
-      } else {
-        console.log("skipppppppppppppp");
+        const data = { canWrite: value.canWrite, editText };
+        dataConnection.send(data);
       }
     };
     /* editorInstance作成後 */
