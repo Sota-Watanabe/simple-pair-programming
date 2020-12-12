@@ -4,7 +4,7 @@ import Editor from "./Editor";
 import { ChangeMode } from "./ChangeMode";
 
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY });
-const VideoChat = () => {
+const Connection = () => {
   const [myId, setMyId] = useState("");
   const [callId, setCallId] = useState("");
   const [dataConnection, setDataConnection] = useState("");
@@ -104,4 +104,4 @@ const VideoChat = () => {
   );
 };
 
-export default VideoChat;
+export default Connection;
