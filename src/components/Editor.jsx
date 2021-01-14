@@ -6,10 +6,14 @@ import AceEditor from "react-ace";
 
 import { ConnectionContext } from "./App";
 let editorInstance = null;
+
+/* エディタ画面コンポーネント */
 export const Editor = React.memo(
   (props) => {
     const [value] = useContext(ConnectionContext);
     const text = props.text;
+
+    /* エディタ画面に変化があった場合 */
     const onChange = () => {
       if (value.canWrite === true) {
         const editText = editorInstance.getValue();

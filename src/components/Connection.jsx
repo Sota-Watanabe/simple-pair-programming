@@ -5,6 +5,7 @@ import { ChangeMode } from "./ChangeMode";
 import { VideoChat } from "./VideoChat";
 import { ConnectionContext } from "./App";
 
+// APIキーを利用し、peerを作成
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY });
 export const Connection = () => {
   const [value, setValue] = useContext(ConnectionContext);
@@ -16,10 +17,11 @@ export const Connection = () => {
   const localVideo = useRef(null);
   const remoteVideo = useRef(null);
 
-  // 最初だけ
+  /* 接続開始時に実行 */
   peer.on("open", () => {
     setMyId(peer.id);
     if (localVideo.current !== null) {
+      /* カメラの設定 */
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
         .then((localStream) => {
@@ -31,7 +33,7 @@ export const Connection = () => {
     if (data.hasOwnProperty("editText")) {
       setEditText(data.editText);
     }
-    // 相手が書き込みモードの場合、自分は読み込みモードに変更する。逆も同様
+    /* 相手が書き込みモードの場合、自分は読み込みモードに変更する。逆も同様 */
     setValue({
       ...value,
       canWrite: !data.canWrite,
@@ -67,7 +69,6 @@ export const Connection = () => {
 
   /* ビデオ電話要求を受信 */
   peer.on("call", (mediaConnection) => {
-    // useEffectを使うべきかもしれない
     if (localVideo.current !== null) {
       mediaConnection.answer(localVideo.current.srcObject);
 
@@ -78,6 +79,7 @@ export const Connection = () => {
   });
   return (
     <div>
+      {/* 接続準備中の時 */}
       {!ready && (
         <div style={{marginLeft: "10%"}}>
           <div>{myId}</div>
@@ -86,10 +88,14 @@ export const Connection = () => {
         </div>
       )}
 
+      {/* テレビ電話コンポーネント */}
       <VideoChat localVideo={localVideo} remoteVideo={remoteVideo} />
+      {/* 接続が完了した時 */}
       {ready && (
         <>
+          {/* モード切り替えコンポーネント */}
           <ChangeMode dataConnection={dataConnection} />
+          {/* エディタ画面コンポーネント */}
           <Editor
             text={editText}
             setText={setEditText}

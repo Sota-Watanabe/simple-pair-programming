@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Switch from "react-ios-switch";
 
+/* テレビ電話コンポーネント */
 export const VideoChat = ({ localVideo, remoteVideo }) => {
   const [muted, setmuted] = useState(true);
   return (
@@ -13,6 +14,8 @@ export const VideoChat = ({ localVideo, remoteVideo }) => {
         }}
       >
         <h3>音声</h3>
+
+        {/* スイッチボタンコンポーネント */}
         <Switch
           style={{ marginLeft: "20px" , marginTop: "auto", marginBottom: "auto"}}
           checked={!muted}
@@ -29,6 +32,7 @@ export const VideoChat = ({ localVideo, remoteVideo }) => {
           margin: "auto",
         }}
       >
+        {/* 自分のビデオ画面 */}
         <div style={{ width: "40%" }}>
           <video
             width="100%"
@@ -39,6 +43,7 @@ export const VideoChat = ({ localVideo, remoteVideo }) => {
             ref={localVideo}
           ></video>
         </div>
+        {/* 相手のビデオ画面 */}
         <div style={{ width: "40%", textAlign: "center" }}>
           <video
             width="100%"
